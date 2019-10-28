@@ -30,14 +30,14 @@
         </a>
       </div>
     </div>
-    <div class="like">
+    <div class="like" v-bind:number="heartNumber">
       <h2>Do you like me?</h2>
       <i class="iconfont" @click="click()">&#xe60b;</i>
-      {{number}}
+      {{heartNumber}}
     </div>
     <div class="blank"></div>
     <div class="section">
-        <!-- <div class="" v-for="item in items" key="item"></div> -->
+      <!-- <div class="" v-for="item in items" key="item"></div> -->
     </div>
   </div>
 </template>
@@ -45,18 +45,30 @@
 <script>
 import Vue from "vue";
 import { Image } from "vant";
-
 Vue.use(Image);
 export default {
   data() {
     return {
-      number: "1256"
+      heartNumber: ""
     };
   },
   methods: {
     click() {
-      this.number++;
+         this.heartNumber++;
+     //  this.$axios.post("http://localhost:8888/").then(result=>{
+     //    console.log(result)
+     //  });
+    },
+    get() {
+      // 请求后台
+      this.$axios.get("http://localhost:8888/").then(result => {
+        this.heartNumber = result.data.courses1[0].heartNumber;
+      });
     }
+  },
+  created() {
+    let that = this;
+    that.get();
   },
   name: "Rightlist"
 };
@@ -66,13 +78,13 @@ export default {
 <style scoped>
 .like {
   width: 363px;
-  height:110px;
+  height: 110px;
   margin-top: 20px;
   border-radius: 5px;
   color: #df2050;
   font-size: 40px;
   transition: all 0.5s;
-  background: #FFFFFF;
+  background: #ffffff;
   padding: 10px;
 }
 .like h2 {
@@ -95,7 +107,7 @@ export default {
   margin-top: 20px;
   border-radius: 5px;
   transition: all 0.5s;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 .blank:hover {
   box-shadow: 3px -3px 20px rgba(0, 0, 0, 0.137);
@@ -107,7 +119,7 @@ export default {
   margin-top: 20px;
   border-radius: 5px;
   transition: all 0.5s;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 .section:hover {
   box-shadow: 3px -3px 20px rgba(0, 0, 0, 0.137);
@@ -120,7 +132,7 @@ export default {
   position: relative;
   border-radius: 5px;
   transition: all 0.5s;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 .rightlist:hover {
   box-shadow: 3px -3px 20px rgba(0, 0, 0, 0.075);

@@ -10,11 +10,16 @@
        爱美食，爱动手做美食，想长胖的尽管来。
 
        ==========================</pre>
-<div class="link">
-    <a href="#">GitHub</a>
-    <a href="#">公众号</a>
-    <a href="#">微博</a>
-    <a href="#">QQ</a>
+    <div class="link">
+      <a href="#">GitHub</a>
+      <a href="#">Resume</a>
+      <a href="#">CSDN</a>
+    </div>
+    <div class="link">
+      <a href="#">公众号</a>
+      <a href="#">微博</a>
+      <a href="#">微信</a>
+      <a href="#">QQ</a>
     </div>
   </div>
 </template>
@@ -35,24 +40,27 @@ export default {
   width: 800px;
   height: 738px;
   margin-top: 90px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 5px;
   padding: 5px;
-  
 }
 pre {
   text-align: left;
   font-size: 15px;
 }
-.link{
-     margin-left: 10px;
-     width: 40%;
-    
+.link {
+  margin-top: 10px;
+  margin-left: 40px;
+  width: 40%;
+  text-align: left;
 }
-.about a{
-     color:#01AAED;
-     margin-right:20px;
-     text-align: left;
-     font: 15px avenir;
+.link a {
+  color: #01aaed;
+  margin-right: 20px;
+  font: 15px avenir;
+  font-style: italic;
+}
+.link a:hover {
+  color: #8f0ef8;
 }
 </style>

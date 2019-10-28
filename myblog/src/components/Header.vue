@@ -71,6 +71,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .bgheader {
   height: 650px;
   background-size: cover;
@@ -190,9 +191,13 @@ export default {
   border-radius: 4px;
   padding: 40px 0;
 }
+.h-information-boximg img:hover{
+     transform: rotate(360deg);
+}
 .h-information-boximg img {
   width: 100px;
   border-radius: 50%;
+  transition: all 0.8s;
 }
 .text1 {
   background: linear-gradient(to right, rgb(253, 3, 3), #48456d);

@@ -8,8 +8,8 @@
       <van-col offset="3" span="8" >
         <Rightlist></Rightlist>
       </van-col>
-      
     </van-row>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -18,6 +18,7 @@
 import Header from "@/components/Header.vue";
 import about from "@/components/temAbout.vue";
 import Rightlist from "@/components/temRightlist.vue";
+import Footer from '@/components/temFooter.vue';
 import Vue from "vue";
 import { Row, Col } from "vant";
 
@@ -27,7 +28,8 @@ export default {
   components: {
     About: about,
     Header: Header,
-    Rightlist: Rightlist
+    Rightlist: Rightlist,
+    Footer:Footer
   }
 };
 </script>

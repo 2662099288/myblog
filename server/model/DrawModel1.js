@@ -4,7 +4,7 @@ class DrawModel extends SqlBase {
     super();
   }
   getAllDraw(callback) {
-    let sql = "select * from name1";
+    let sql = "select * from heartNumber";
     this.connection.query(sql, function(err, result) {
       if (err) {
         console.log("[INSERT ERROR] - ", err.message);

@@ -8,20 +8,26 @@
       <van-col offset="3" span="8" >
         <Rightlist></Rightlist>
       </van-col>
-      
     </van-row>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Vue from 'vue';
+import { Row, Col } from 'vant';
+
+Vue.use(Row).use(Col);
 import Header from '@/components/Header.vue';
 import Rightlist from "@/components/temRightlist.vue";
+import Footer from '@/components/temFooter.vue';
 export default {
   name: 'home',
   components: {
     Header:Header,
-    Rightlist:Rightlist
+    Rightlist:Rightlist,
+    Footer:Footer
   }
 }
 </script>
