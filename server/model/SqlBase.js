@@ -2,11 +2,11 @@ class SqlBase {
   constructor() {
     let mysql = require("mysql"); 
     this.connection = mysql.createConnection({
-      host: "cdb-a9y1iffo.cd.tencentcdb.com", 
+      host: "localhost", 
       user: "root", 
-      password: "cdhq1234", 
-      port: "10055",
-      database: "myblog" 
+      password: "123456", 
+      port: "3306",
+      database: "test" 
     });
     //2,连接
     this.connection.connect();

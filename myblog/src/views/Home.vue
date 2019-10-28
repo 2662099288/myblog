@@ -1,17 +1,27 @@
 <template>
   <div class="home">
     <Header msg="Welcome to Your Vue.js App"/>
+    <van-row  type="flex" justify="space-around">
+      <van-col offset="2" span="10">
+        <About></About>
+      </van-col>
+      <van-col offset="3" span="8" >
+        <Rightlist></Rightlist>
+      </van-col>
+      
+    </van-row>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Header from '@/components/Header.vue'
-
+import Header from '@/components/Header.vue';
+import Rightlist from "@/components/temRightlist.vue";
 export default {
   name: 'home',
   components: {
-    Header:Header
+    Header:Header,
+    Rightlist:Rightlist
   }
 }
 </script>
