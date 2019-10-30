@@ -19,7 +19,9 @@ app.all("*", function (req, res, next) {
 let ip = "http://192.168.1.117:";
 let port = "8888";
 let indexController = require("./controllers/IndexController");
-app.get('/',indexController.index)
+let likeController = require("./controllers/likeController");
+app.get('/index',indexController.index)
+app.get('/like',likeController.index)
 app.listen(8888, function () {
    console.log("启动");
 });

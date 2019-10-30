@@ -49,19 +49,34 @@ Vue.use(Image);
 export default {
   data() {
     return {
+     first:0,
       heartNumber: ""
     };
   },
   methods: {
     click() {
-         this.heartNumber++;
-     //  this.$axios.post("http://localhost:8888/").then(result=>{
-     //    console.log(result)
-     //  });
+         if(this.first==0){
+              this.$axios.get("http://localhost:8888/like").then(response => {
+        this.heartNumber = response.data.courses1[0].heartNumber;
+        this.first++;
+     //    this.$http.post(
+     //        `http://localhost:8888/index/`,
+     //        { heartNumber: 22222 },
+     //        {
+     //          emulateJSON: true
+     //        }
+     //      )
+     //      .then(res => {
+     //        window.console.log(res);
+            
+     //      });
+      });
+         }
+      
     },
     get() {
       // 请求后台
-      this.$axios.get("http://localhost:8888/").then(result => {
+      this.$axios.get("http://localhost:8888/index").then(result => {
         this.heartNumber = result.data.courses1[0].heartNumber;
       });
     }
