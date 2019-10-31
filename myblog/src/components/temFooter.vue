@@ -70,6 +70,7 @@ export default {
 .footer1 {
   width: 100%;
   color: #888;
+  margin-top: 20px;
 }
 .bgimg {
   margin-top: 10px;

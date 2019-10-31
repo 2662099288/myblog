@@ -37,10 +37,20 @@
           </router-link>
         </div>
         <div class="header-right">
-          <div class="header-right-left">
-            <router-link to="/about">登录</router-link>
+          <div class="header-right-left" v-show="!haslogin">
+            <router-link to="/login">登录</router-link>
             <span>|</span>
-            <router-link to="/about">注册</router-link>
+            <router-link to="/register">注册</router-link>
+          </div>
+          <div class="header-right-left userlogined" v-show="haslogin">
+            <i class="iconfont">&#xe600;</i>user
+            <div class="logined">
+                 <div class="quit">个人中心</div>
+                 <div class="quit">喜欢列表</div>
+                 <div class="quit">收藏列表</div>
+                 <div class="quit" @click="quit">退出登录</div>
+                 
+            </div>
           </div>
           <i class="iconfont search">
             &#xe605;
@@ -61,8 +71,35 @@
 export default {
   data() {
     return {
-      headbg01: "url(" + require("../assets/img/headbg01.jpg") + ")"
+      headbg01: "url(" + require("../assets/img/headbg01.jpg") + ")",
+      haslogin: false
     };
+  },
+  methods: {
+    routeChange: function() {
+      var that = this;
+          if (localStorage.getItem("userInfo")) {
+            //存储用户信息
+            that.haslogin = true;
+            that.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+            console.log(that.userInfo);
+          } else {
+            that.haslogin = false;
+          }
+    },
+    quit:function(){
+         var that = this;
+            this.haslogin = false;
+            localStorage.setItem('userInfo',JSON.stringify(''));
+    }
+  },
+  watch: {
+    // 如果路由有变化，会再次执行该方法
+    $route: "routeChange"
+  },
+  created() {
+    var that = this;
+    that.routeChange();
   },
 
   name: "Header"
@@ -71,7 +108,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+/* 用户管理 */
+.logined{
+     width: 60px;
+     height: 150px;
+     position: absolute;
+     top: 38px;
+     left: -10px;
+     font-size: 13px;
+     background: rgba(40, 42, 44, 0.6);
+     display: none; 
+}
+.userlogined:hover .logined{
+     display: block;
+}
 .bgheader {
   height: 650px;
   background-size: cover;
@@ -89,6 +139,7 @@ export default {
   top: 0;
   left: 0;
   white-space: nowrap;
+  z-index: 100;
 }
 .header {
   display: flex;
@@ -126,6 +177,7 @@ export default {
   align-items: center;
   margin-right: 10px;
   flex-wrap: nowrap;
+  position: relative;
 }
 .header-right-left a,
 .header-right-left span {
@@ -191,8 +243,8 @@ export default {
   border-radius: 4px;
   padding: 40px 0;
 }
-.h-information-boximg img:hover{
-     transform: rotate(360deg);
+.h-information-boximg img:hover {
+  transform: rotate(360deg);
 }
 .h-information-boximg img {
   width: 100px;
