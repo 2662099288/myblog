@@ -44,7 +44,7 @@
           </div>
           <div class="header-right-left userlogined" v-show="haslogin" :username="username">
             <div class="iconfonttou">
-              <i class="iconfont">&#xe600;</i>
+              <i class="iconfont" @click="qqq">&#xe600;</i>
               <span>{{username}}</span>
             </div>
             <div class="logined">
@@ -81,12 +81,11 @@ export default {
   methods: {
     routeChange: function() {
       var that = this;
-      if (localStorage.getItem("userInfo")) {
+      if (localStorage.getItem("userInfo")=='true') {
         //存储用户信息
         that.haslogin = true;
         that.userInfo = JSON.parse(localStorage.getItem("userInfo"));
         that.username = JSON.parse(localStorage.getItem("username"));
-        console.log(that.userInfo);
       } else {
         that.haslogin = false;
       }
@@ -94,7 +93,7 @@ export default {
     quit: function() {
       var that = this;
       this.haslogin = false;
-      localStorage.setItem("userInfo", JSON.stringify(""));
+      localStorage.setItem("userInfo", JSON.stringify(false));
     }
   },
   watch: {

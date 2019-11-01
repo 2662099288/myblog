@@ -1,10 +1,10 @@
 let SqlBase = require("./SqlBase");
-class Register extends SqlBase {
+class SendMessage extends SqlBase {
      constructor() {
           super();
      }
-     insert(name, password, callback) {
-          let sql = "INSERT INTO user(username, userpassword) VALUES ("+"'"+name+"'"+","+"'"+password+"'"+");";
+     insert(name, message,callback) {
+          let sql = "INSERT INTO message(username, message,time) VALUES ("+"'"+name+"'"+","+"'"+message+"'"+",now()"+");";
           this.connection.query(sql, function (err, result) {
                if (err) {
                     console.log("[UPDATE1 ERROR] - ", err.message);
@@ -18,4 +18,4 @@ class Register extends SqlBase {
      }
 }
 
-module.exports = Register;
+module.exports = SendMessage;

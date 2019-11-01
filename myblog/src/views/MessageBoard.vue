@@ -4,6 +4,7 @@
     <van-row  type="flex" justify="space-around">
       <van-col offset="2" span="10">
         <MessageBoard></MessageBoard>
+        <aMessage></aMessage>
       </van-col>
       <van-col offset="3" span="8" >
         <Rightlist></Rightlist>
@@ -17,6 +18,7 @@
 // @ is an alias to /src
 import Header from "@/components/Header.vue";
 import MessageBoard from "@/components/temMessageBoard.vue";
+import aMessage from "@/components/temaMessage.vue";
 import Rightlist from "@/components/temRightlist.vue";
 import Footer from '@/components/temFooter.vue';
 import Vue from "vue";
@@ -28,6 +30,7 @@ export default {
   components: {
     MessageBoard: MessageBoard,
     Header: Header,
+    aMessage:aMessage,
     Rightlist: Rightlist,
     Footer:Footer
   }

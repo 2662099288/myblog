@@ -21,9 +21,11 @@ let port = "8888";
 let indexController = require("./controllers/IndexController");
 let likeController = require("./controllers/likeController");
 let registerController = require("./controllers/registerController");
+let sendmessageController = require("./controllers/sendmessageController");
 app.get('/index',indexController.index)
 app.get('/like',likeController.index)
 app.get('/register',registerController.index)
+app.get('/sendmessage',sendmessageController.index)
 app.listen(8888, function () {
    console.log("启动");
 });

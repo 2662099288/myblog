@@ -22,6 +22,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .messageBoard {
+  box-sizing: border-box;
   width: 800px;
   height: 738px;
   margin-top: 90px;

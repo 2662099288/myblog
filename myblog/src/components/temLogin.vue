@@ -74,7 +74,7 @@ export default {
               if (user.userpassword == that.password) {
                 
                 that.$router.push({ path: "/" });
-                localStorage.setItem("userInfo", JSON.stringify(user.username));
+                localStorage.setItem("userInfo", JSON.stringify(true));
                 localStorage.setItem('username',JSON.stringify(that.username));
                 return true;
               } else {
@@ -143,6 +143,10 @@ export default {
   font-size: 14px;
   margin-top: 100px;
   background: #97dffd;
+  color: #ffffff;
+}
+.submit:hover{
+     background: #1bb5f7;
   color: #ffffff;
 }
 .register {

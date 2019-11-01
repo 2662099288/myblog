@@ -146,6 +146,10 @@ export default {
   background: #97dffd;
   color: #ffffff;
 }
+.submit:hover{
+     background: #1bb5f7;
+  color: #ffffff;
+}
 .loginbox {
   position: absolute;
   top: 45px;
