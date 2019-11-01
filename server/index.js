@@ -20,8 +20,10 @@ let ip = "http://192.168.1.117:";
 let port = "8888";
 let indexController = require("./controllers/IndexController");
 let likeController = require("./controllers/likeController");
+let registerController = require("./controllers/registerController");
 app.get('/index',indexController.index)
 app.get('/like',likeController.index)
+app.get('/register',registerController.index)
 app.listen(8888, function () {
    console.log("启动");
 });

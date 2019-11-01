@@ -1,10 +1,10 @@
 let IndexService = require("../services/IndexService");
-let UpdateLikeNumber = require("../model/UpdatalikeNumber");
+let Register = require("../model/Register");
 
 module.exports.index = function(req, res) {
-  let updateNumber=new UpdateLikeNumber();
-     updateNumber.update(req.data,function(ob){
-            
+  let register=new Register();
+   register.insert(req.query.username,req.query.password,function(ob){
+         
      })
   
 //   UpdateLikeNumber.insert(req.query.name,req.query.password,function (data) {

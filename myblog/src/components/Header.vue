@@ -28,7 +28,7 @@
           <router-link to="/">
             <i class="iconfont">&#xe607;</i>伙伴
           </router-link>
-          <router-link to="/">
+          <router-link to="/message">
             <i class="iconfont">&#xe604;</i>留言板
           </router-link>
 
@@ -42,14 +42,16 @@
             <span>|</span>
             <router-link to="/register">注册</router-link>
           </div>
-          <div class="header-right-left userlogined" v-show="haslogin">
-            <i class="iconfont">&#xe600;</i>user
+          <div class="header-right-left userlogined" v-show="haslogin" :username="username">
+            <div class="iconfonttou">
+              <i class="iconfont">&#xe600;</i>
+              <span>{{username}}</span>
+            </div>
             <div class="logined">
-                 <div class="quit">个人中心</div>
-                 <div class="quit">喜欢列表</div>
-                 <div class="quit">收藏列表</div>
-                 <div class="quit" @click="quit">退出登录</div>
-                 
+              <div class="quit">个人中心</div>
+              <div class="quit">喜欢列表</div>
+              <div class="quit">收藏列表</div>
+              <div class="quit" @click="quit">退出登录</div>
             </div>
           </div>
           <i class="iconfont search">
@@ -71,6 +73,7 @@
 export default {
   data() {
     return {
+      username: "",
       headbg01: "url(" + require("../assets/img/headbg01.jpg") + ")",
       haslogin: false
     };
@@ -78,19 +81,20 @@ export default {
   methods: {
     routeChange: function() {
       var that = this;
-          if (localStorage.getItem("userInfo")) {
-            //存储用户信息
-            that.haslogin = true;
-            that.userInfo = JSON.parse(localStorage.getItem("userInfo"));
-            console.log(that.userInfo);
-          } else {
-            that.haslogin = false;
-          }
+      if (localStorage.getItem("userInfo")) {
+        //存储用户信息
+        that.haslogin = true;
+        that.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+        that.username = JSON.parse(localStorage.getItem("username"));
+        console.log(that.userInfo);
+      } else {
+        that.haslogin = false;
+      }
     },
-    quit:function(){
-         var that = this;
-            this.haslogin = false;
-            localStorage.setItem('userInfo',JSON.stringify(''));
+    quit: function() {
+      var that = this;
+      this.haslogin = false;
+      localStorage.setItem("userInfo", JSON.stringify(""));
     }
   },
   watch: {
@@ -109,18 +113,25 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 /* 用户管理 */
-.logined{
-     width: 60px;
-     height: 150px;
-     position: absolute;
-     top: 38px;
-     left: -10px;
-     font-size: 13px;
-     background: rgba(40, 42, 44, 0.6);
-     display: none; 
+.iconfonttou:hover {
+  color: #f57904;
 }
-.userlogined:hover .logined{
-     display: block;
+.quit:hover{
+     background: #48456d;
+      color: #f57904;
+}
+.logined {
+  width: 60px;
+  height: 150px;
+  position: absolute;
+  top: 38px;
+  left: -10px;
+  font-size: 13px;
+  background: rgba(40, 42, 44, 0.6);
+  display: none;
+}
+.userlogined:hover .logined {
+  display: block;
 }
 .bgheader {
   height: 650px;

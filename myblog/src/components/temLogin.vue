@@ -48,37 +48,56 @@ Vue.use(Field);
 export default {
   data() {
     return {
-      username: "stystem",
-      password: "123456"
+      username: "",
+      password: ""
     };
   },
   methods: {
+    registername: function() {
+      var that = this;
+      if (localStorage.getItem("username")) {
+        //存储用户信息
+        that.username = JSON.parse(localStorage.getItem("username"));
+        console.log(that.username);
+      }
+    },
     login1() {
-         let that=this;
+      let that = this;
       if (this.username === "") {
         alert("用户名不能为空！");
       } else if (this.password === "") {
         alert("密码不能为空！");
       } else {
         this.$axios.get("http://localhost:8888/like").then(response => {
-          response.data.User.forEach(function(user) {
+          let usered=response.data.User.some(function(user) {
             if (user.username == that.username) {
-              if(user.userpassword == that.password){
-                   alert('成功登录！');
-                   that.$router.push({path:'/'});
-                   localStorage.setItem('userInfo',JSON.stringify(user.username));
-              }else{
-                   alert('密码错误！')
+              if (user.userpassword == that.password) {
+                
+                that.$router.push({ path: "/" });
+                localStorage.setItem("userInfo", JSON.stringify(user.username));
+                localStorage.setItem('username',JSON.stringify(that.username));
+                return true;
+              } else {
+               
+                return false;
               }
-            }else{
-                 alert('该用户不存在！')
+            } else {
+             return false;
             }
           });
+          if(usered){
+               alert("成功登录！");
+          }else{
+                alert("用户名或密码错误！");
+          }
         });
       }
     }
   },
-
+  created() {
+    let that = this;
+    that.registername();
+  },
   name: "Login"
 };
 </script>
