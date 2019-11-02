@@ -12,13 +12,13 @@
         <i class="iconfont">&#xe61a;</i>
         {{event.time}}
         <i class="iconfont">&#xe643;</i>
-        {{event.Browse_number}}次浏览
+        {{event.BrowseNumber}}次浏览
       </p>
       <p class="eventintrodu">{{event.introduction}}</p>
       <div class="eventimgbox">
         <img v-lazy="event.img" />
       </div>
-      <router-link to="/about" class="link">阅读全文>></router-link>
+      <span  class="link" @click="read(event.id)">阅读全文>></span>
     </div>
     <div @click="clickMore" class="clickmore">{{more}}</div>
   </div>
@@ -69,6 +69,11 @@ export default {
           this.more = "没有更多啦";
         }
       });
+    },
+    read(id){
+         this.$axios.get("http://localhost:8888/read?id="+id).then(res=>{
+              
+         })
     }
   },
   created() {

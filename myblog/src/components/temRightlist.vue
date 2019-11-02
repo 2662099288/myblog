@@ -95,7 +95,7 @@ export default {
                         that.gotoTop = false;
                     }
                 }
-                if(t>2200){
+                if(t>1800){
                     that.fixDo = true;
                 }else{
                     that.fixDo = false;
@@ -153,7 +153,7 @@ export default {
 }
 .section {
   width: 383px;
-  height: 1000px;
+  height: 500px;
   margin-top: 20px;
   border-radius: 5px;
   transition: all 0.5s;
