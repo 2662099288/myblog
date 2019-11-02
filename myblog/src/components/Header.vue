@@ -115,6 +115,9 @@ export default {
 .iconfonttou:hover {
   color: #f57904;
 }
+.quit{
+     cursor: pointer;
+}
 .quit:hover{
      background: #48456d;
       color: #f57904;

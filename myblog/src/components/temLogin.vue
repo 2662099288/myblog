@@ -1,6 +1,7 @@
 <template>
   <div class="login">
-    <p>Roy的博客</p>
+       
+    <p><router-link to="/">Roy的博客</router-link></p>
     <div class="login1">
       <div class="login2">
         <div>
@@ -129,8 +130,11 @@ export default {
   margin: 40px 0 20px -270px;
   text-align: left;
 }
-.login > p {
+.login > p >a{
+     display: inline-block;
   font-size: 26px;
+  color: #444;
+  margin-top: 40px;
 }
 .passwordinput {
   margin-top: 20px;

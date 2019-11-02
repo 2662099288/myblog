@@ -4,7 +4,7 @@ class getMessage extends SqlBase {
     super();
   }
   getAllDraw(callback) {
-    let sql = "select * from Message ORDER BY time DESC";
+    let sql = "select *,date_format(time,'%Y-%m-%d %H:%i:%s') from Message ORDER BY time DESC";
     this.connection.query(sql, function(err, result) {
       if (err) {
         console.log("[INSERT ERROR] - ", err.message);

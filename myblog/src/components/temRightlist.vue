@@ -30,7 +30,7 @@
         </a>
       </div>
     </div>
-    <div class="like" v-bind:number="heartNumber">
+    <div :class="fixDo?'like fixed':'like'" v-bind:number="heartNumber">
       <h2>Do you like me?</h2>
       <i class="iconfont" @click="click()">&#xe60b;</i>
       {{heartNumber}}
@@ -50,7 +50,8 @@ export default {
   data() {
     return {
      first:0,
-      heartNumber: ""
+      heartNumber: "",
+      fixDo : false
     };
   },
   methods: {
@@ -84,6 +85,22 @@ export default {
   created() {
     let that = this;
     that.get();
+     window.onscroll = function(){
+                 var t = document.documentElement.scrollTop || document.body.scrollTop;
+                 //console.log(t);
+                if(!that.going){
+                    if(t>600){
+                        that.gotoTop = true;
+                    }else{
+                        that.gotoTop = false;
+                    }
+                }
+                if(t>2200){
+                    that.fixDo = true;
+                }else{
+                    that.fixDo = false;
+                }
+     }
   },
   name: "Rightlist"
 };
@@ -101,6 +118,7 @@ export default {
   transition: all 0.5s;
   background: #ffffff;
   padding: 10px;
+  z-index: 100;
 }
 .like h2 {
   font-size: 20px;
@@ -115,6 +133,11 @@ export default {
 }
 .like i:hover {
   font-size: 35px;
+}
+.fixed{
+     position: fixed;
+     top: 19px;
+     right: 139px;
 }
 .blank {
   width: 383px;
@@ -135,6 +158,7 @@ export default {
   border-radius: 5px;
   transition: all 0.5s;
   background: #ffffff;
+  z-index: 80;
 }
 .section:hover {
   box-shadow: 3px -3px 20px rgba(0, 0, 0, 0.137);

@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <p>Roy的博客</p>
+    <p><router-link to="/">Roy的博客</router-link></p>
     <div class="login1">
       <div class="login2">
         <div>
@@ -98,7 +98,6 @@ export default {
       }
     }
   },
-
   name: "Login"
 };
 </script>
@@ -122,8 +121,11 @@ export default {
 .login a {
   color: #97dffd;
 }
-.login > p {
+.login > p >a{
+     display: inline-block;
   font-size: 26px;
+  color: #444;
+  margin-top: 40px;
 }
 .login1 h1 {
   font-size: 24px;
