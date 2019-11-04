@@ -47,11 +47,13 @@
         <span> - {{event.BrowseNumber}}次围观</span>
       </div>
       </div>
-      
+    </div>
+    <div :class="!isShowTop?'scrollbox':'scrollbox scrollbox1'" @click="returntop()" >
+         <img src="../assets/img/scroll.png" alt="">
+
     </div>
   </div>
 </template>
-
 <script>
 import Vue from "vue";
 import { Image } from "vant";
@@ -62,7 +64,8 @@ export default {
       first: 0,
       eventList:[],
       heartNumber: "",
-      fixDo: false
+      fixDo: false,
+      isShowTop:false
     };
   },
   methods: {
@@ -97,9 +100,15 @@ export default {
       that.$axios.get("http://localhost:8888/read?id=" + id).then(res => {
         that.$router.push({ path: "/read?id=" + id });
       });
+    },
+    returntop(){
+         document.getElementById('Top').scrollIntoView({
+            block: 'start',
+            inline: 'nearest',
+            behavior: 'smooth'
+        })
     }
   },
-  
   created() {
     let that = this;
     this.get();
@@ -109,8 +118,10 @@ export default {
       if (!that.going) {
         if (t > 600) {
           that.gotoTop = true;
+          that.isShowTop=true;
         } else {
           that.gotoTop = false;
+          that.isShowTop=false;
         }
       }
       if (t > 1800) {
@@ -279,5 +290,16 @@ export default {
 }
 .eventname:hover{
      color: rgb(11, 34, 165);
+}
+.scrollbox{
+     transition: all 1s;
+     position: fixed;
+     top: -900px;
+     right: 50px;
+     transition: all 0.8s;
+}
+.scrollbox1{
+     transform: translateY(700px)
+
 }
 </style>

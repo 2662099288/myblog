@@ -1,6 +1,11 @@
 <template>
-  <div>
+  <div id="Top">
     <div class="bgheader" :style="{backgroundImage:headbg01}">
+      <div class="scene">
+        <div>
+          <span id="luke"></span>
+        </div>
+      </div>
       <div class="h-information">
         <div class="h-information-box">
           <div class="h-information-boximg">
@@ -45,7 +50,7 @@
           <div class="header-right-left userlogined" v-show="haslogin" :username="username">
             <div class="iconfonttou">
               <div>
-                <i class="iconfont" >&#xe600;</i>
+                <i class="iconfont">&#xe600;</i>
                 <span>{{username}}</span>
               </div>
 
@@ -73,6 +78,7 @@
 </template>
 
 <script>
+import { Typeit } from "../assets/js/plug.js";
 export default {
   data() {
     return {
@@ -106,6 +112,15 @@ export default {
   created() {
     var that = this;
     that.routeChange();
+  },
+  mounted() {
+    //页面元素加载完成
+    //console.log('是否是慧慧',this.$store.state.themeObj.user_start);
+    var that = this;
+    var timer = setTimeout(function() {
+      Typeit(1, "#luke"); //打字机效果
+      clearTimeout(timer);
+    }, 500);
   },
 
   name: "Header"
@@ -276,4 +291,21 @@ export default {
   color: transparent;
   font-size: 18px;
 }
+.scene {
+  width: 100%;
+  /*height:300px;*/
+  text-align: center;
+  font-size: 100px;
+  font-weight:bolder;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 160px;
+  font-family: "Element", Arial;
+  text-shadow: 0 2px 2px #47456d;
+}
+ .scene span {
+  text-shadow: 1px 1px 0 #ff3f1a, -1px -1px 0 #00a7e0;
+}
+
 </style>
