@@ -13,7 +13,7 @@
     <div class="hello">
       <div class="header">
         <div class="header-left">
-          <router-link to="/">
+          <router-link to="/?istop=ture">
             <i class="iconfont">&#xe601;</i>首页
           </router-link>
           <router-link to="/">
@@ -44,14 +44,17 @@
           </div>
           <div class="header-right-left userlogined" v-show="haslogin" :username="username">
             <div class="iconfonttou">
-              <i class="iconfont" @click="qqq">&#xe600;</i>
-              <span>{{username}}</span>
-            </div>
-            <div class="logined">
-              <div class="quit">个人中心</div>
-              <div class="quit">喜欢列表</div>
-              <div class="quit">收藏列表</div>
-              <div class="quit" @click="quit">退出登录</div>
+              <div>
+                <i class="iconfont" >&#xe600;</i>
+                <span>{{username}}</span>
+              </div>
+
+              <div class="logined">
+                <div class="quit">个人中心</div>
+                <div class="quit">喜欢列表</div>
+                <div class="quit">收藏列表</div>
+                <div class="quit" @click="quit">退出登录</div>
+              </div>
             </div>
           </div>
           <i class="iconfont search">
@@ -81,7 +84,7 @@ export default {
   methods: {
     routeChange: function() {
       var that = this;
-      if (localStorage.getItem("userInfo")=='true') {
+      if (localStorage.getItem("userInfo") == "true") {
         //存储用户信息
         that.haslogin = true;
         that.userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -112,22 +115,23 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 /* 用户管理 */
-.iconfonttou:hover {
+.iconfonttou {
+  cursor: pointer;
+  position: relative;
+}
+.quit {
+  cursor: pointer;
+}
+.quit:hover {
+  background: #48456d;
   color: #f57904;
-}
-.quit{
-     cursor: pointer;
-}
-.quit:hover{
-     background: #48456d;
-      color: #f57904;
 }
 .logined {
   width: 60px;
   height: 150px;
   position: absolute;
   top: 38px;
-  left: -10px;
+  right: 0;
   font-size: 13px;
   background: rgba(40, 42, 44, 0.6);
   display: none;
@@ -202,6 +206,7 @@ export default {
   font-size: 12px;
   margin-left: 5px;
   position: relative;
+  cursor: pointer;
 }
 .header-left a:hover {
   background: rgba(73, 69, 107, 0.7);
@@ -239,6 +244,7 @@ export default {
   left: 180px;
   color: rgba(0, 0, 0, 0.123);
   font-size: 13px;
+  cursor: pointer;
 }
 .search:hover .searchbox {
   display: block;

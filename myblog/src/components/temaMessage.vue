@@ -85,7 +85,7 @@ export default {
     clickMore() {
       this.$axios.get("http://localhost:8888/index").then(result => {
         let i = this.i;
-        let breaki = i + 3;
+        let breaki = i + 6;
         while (result.data.Message[i]) {
           this.messageList.push(result.data.Message[i]);
           i++;
@@ -103,6 +103,10 @@ export default {
   created() {
     this.get();
   },
+  mounted: function() {
+     //实现跳转到该页面的指定位置
+  document.documentElement.scrollTop = 675;
+},
 
   name: "amessage"
 };

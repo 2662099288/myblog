@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about" id="test">
     <h2>关于我</h2>
     <img src="../assets/img/maoto.png" alt />
     <pre>
@@ -29,7 +29,10 @@ export default {
   data() {
     return {};
   },
-
+  mounted: function() {
+       //实现跳转到该页面的指定位置
+    document.documentElement.scrollTop = 675;
+  },
   name: "About"
 };
 </script>

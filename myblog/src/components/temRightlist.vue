@@ -37,7 +37,17 @@
     </div>
     <div class="blank"></div>
     <div class="section">
-      <!-- <div class="" v-for="item in items" key="item"></div> -->
+      <div class="topclass">
+        大家都排队来看这些
+        <div class="topclassjiao"></div>
+      </div>
+      <div class="eventboxfather">
+<div class="eventbox" v-for="(event,index) in eventList" :key="index">
+                <span  @click="read(event.id)" class="eventname">{{event.name}}</span>
+        <span> - {{event.BrowseNumber}}次围观</span>
+      </div>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -49,58 +59,66 @@ Vue.use(Image);
 export default {
   data() {
     return {
-     first:0,
+      first: 0,
+      eventList:[],
       heartNumber: "",
-      fixDo : false
+      fixDo: false
     };
   },
   methods: {
     click() {
-         if(this.first==0){
-              this.$axios.get("http://localhost:8888/like").then(response => {
-        this.heartNumber = response.data.courses1[0].heartNumber;
-        this.first++;
-     //    this.$http.post(
-     //        `http://localhost:8888/index/`,
-     //        { heartNumber: 22222 },
-     //        {
-     //          emulateJSON: true
-     //        }
-     //      )
-     //      .then(res => {
-     //        window.console.log(res);
-            
-     //      });
-      });
-         }
-      
+      if (this.first == 0) {
+        this.$axios.get("http://localhost:8888/like").then(response => {
+          this.heartNumber = response.data.courses1[0].heartNumber;
+          this.first++;
+          //    this.$http.post(
+          //        `http://localhost:8888/index/`,
+          //        { heartNumber: 22222 },
+          //        {
+          //          emulateJSON: true
+          //        }
+          //      )
+          //      .then(res => {
+          //        window.console.log(res);
+
+          //      });
+        });
+      }
     },
     get() {
       // 请求后台
       this.$axios.get("http://localhost:8888/index").then(result => {
         this.heartNumber = result.data.courses1[0].heartNumber;
+        this.eventList = result.data.eventList;
+      });
+    },
+    read(id) {
+      let that = this;
+      that.$axios.get("http://localhost:8888/read?id=" + id).then(res => {
+        that.$router.push({ path: "/read?id=" + id });
       });
     }
   },
+  
   created() {
     let that = this;
-    that.get();
-     window.onscroll = function(){
-                 var t = document.documentElement.scrollTop || document.body.scrollTop;
-                 //console.log(t);
-                if(!that.going){
-                    if(t>600){
-                        that.gotoTop = true;
-                    }else{
-                        that.gotoTop = false;
-                    }
-                }
-                if(t>1800){
-                    that.fixDo = true;
-                }else{
-                    that.fixDo = false;
-                }
-     }
+    this.get();
+    window.onscroll = function() {
+      var t = document.documentElement.scrollTop || document.body.scrollTop;
+      //console.log(t);
+      if (!that.going) {
+        if (t > 600) {
+          that.gotoTop = true;
+        } else {
+          that.gotoTop = false;
+        }
+      }
+      if (t > 1800) {
+        that.fixDo = true;
+      } else {
+        that.fixDo = false;
+      }
+    };
   },
   name: "Rightlist"
 };
@@ -118,7 +136,7 @@ export default {
   transition: all 0.5s;
   background: #ffffff;
   padding: 10px;
-  z-index: 100;
+  z-index: 90;
 }
 .like h2 {
   font-size: 20px;
@@ -126,6 +144,7 @@ export default {
 .like i {
   font-size: 25px;
   transition: all 0.5s;
+  cursor: pointer;
 }
 .like:hover {
   box-shadow: 3px -3px 20px rgba(0, 0, 0, 0.137);
@@ -134,10 +153,10 @@ export default {
 .like i:hover {
   font-size: 35px;
 }
-.fixed{
-     position: fixed;
-     top: 19px;
-     right: 139px;
+.fixed {
+  position: fixed;
+  top: 22px;
+  right: 139px;
 }
 .blank {
   width: 383px;
@@ -159,6 +178,7 @@ export default {
   transition: all 0.5s;
   background: #ffffff;
   z-index: 80;
+  position: relative;
 }
 .section:hover {
   box-shadow: 3px -3px 20px rgba(0, 0, 0, 0.137);
@@ -214,5 +234,50 @@ export default {
 .contact a i {
   font-size: 18px;
   line-height: 42px;
+}
+.topclass {
+  width: 160px;
+  height: 30px;
+  color: #ffffff;
+  background: #97dffd;
+  line-height: 30px;
+  font-size: 14px;
+  text-indent: 1em;
+  position: absolute;
+  top: 29px;
+  left: -16px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.topclassjiao {
+  position: absolute;
+  top: 30px;
+  width: 0px;
+  height: 0px;
+  border-top: 7px solid #48456d;
+  border-right: 7px solid #48456d;
+  border-left: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+.eventboxfather{
+     position: absolute;   
+     top: 70px;
+
+}
+.eventbox {
+  font-size: 14px;
+  text-align: left;
+  text-indent:1em;   
+  margin-top: 20px;
+  
+}
+
+.eventname{
+     color: #000;
+     font-weight: 600;
+     cursor: pointer;
+}
+.eventname:hover{
+     color: rgb(11, 34, 165);
 }
 </style>

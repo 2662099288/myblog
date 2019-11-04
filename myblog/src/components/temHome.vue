@@ -18,7 +18,7 @@
       <div class="eventimgbox">
         <img v-lazy="event.img" />
       </div>
-      <span  class="link" @click="read(event.id)">阅读全文>></span>
+      <span class="link" @click="read(event.id)">阅读全文>></span>
     </div>
     <div @click="clickMore" class="clickmore">{{more}}</div>
   </div>
@@ -35,7 +35,8 @@ export default {
     return {
       i: 0,
       more: "点击加载更多",
-      eventList: []
+      eventList: [],
+      istop: false
     };
   },
   methods: {
@@ -70,15 +71,24 @@ export default {
         }
       });
     },
-    read(id){
-         this.$axios.get("http://localhost:8888/read?id="+id).then(res=>{
-              
-         })
+    read(id) {
+      let that = this;
+      that.$axios.get("http://localhost:8888/read?id=" + id).then(res => {
+        that.$router.push({ path: "/read?id=" + id });
+      });
     }
   },
   created() {
     let that = this;
     that.get();
+  },
+  mounted: function() {
+    //实现跳转到该页面的指定位置
+    this.istop = this.$route.query.istop;
+    console.log(this.istop);
+    if (this.istop) {
+      document.documentElement.scrollTop = 675;
+    }
   },
   name: "About"
 };

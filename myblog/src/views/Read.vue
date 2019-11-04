@@ -1,9 +1,9 @@
 <template>
-  <div class="about" >
+  <div class="read">
     <Header></Header>
     <van-row  type="flex" justify="space-around">
       <van-col offset="2" span="10">
-        <About></About>
+        <Read></Read>
       </van-col>
       <van-col offset="3" span="8" >
         <Rightlist></Rightlist>
@@ -16,7 +16,7 @@
 <script>
 // @ is an alias to /src
 import Header from "@/components/Header.vue";
-import about from "@/components/temAbout.vue";
+import Read from "@/components/temRead.vue";
 import Rightlist from "@/components/temRightlist.vue";
 import Footer from '@/components/temFooter.vue';
 import Vue from "vue";
@@ -24,9 +24,9 @@ import { Row, Col } from "vant";
 
 Vue.use(Row).use(Col);
 export default {
-  name: "about",
+  name: "read",
   components: {
-    About: about,
+    Read: Read,
     Header: Header,
     Rightlist: Rightlist,
     Footer:Footer
